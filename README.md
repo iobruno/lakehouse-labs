@@ -10,3 +10,45 @@
 ![Docker](https://img.shields.io/badge/Docker-329DEE?style=flat&logo=docker&logoColor=white&labelColor=329DEE)
 
 Experimentations with Delta, Iceberg, Hive, and other Big Data tools
+
+
+## Tech Stack
+- [PySpark](https://spark.apache.org/docs/latest/api/python/user_guide)
+- [Spark-Delta](https://docs.delta.io/latest/quick-start.html)
+- [Spark-Iceberg](https://iceberg.apache.org/spark-quickstart/)
+- [uv](https://docs.astral.sh/uv/concepts/projects/dependencies/)
+- [Docker](https://docs.docker.com/get-docker/)
+
+## Up and Running
+
+### Developer Setup
+
+**1.** Install `JDK` 11 or 17, Spark 3.5.x, and Hadoop:
+```shell
+sdk i java 17.0.13-librca
+sdk i spark 3.5.3
+sdk i hadoop 3.3.6
+```
+
+**2.** Install the dependencies on `pyproject.toml`:
+```shell
+uv sync
+```
+
+**3.** Activate the virtualenv created by `uv`:
+```shell
+source .venv/bin/activate
+```
+
+**4.** Spin up Minio (Object Storage), and Hive Metastore on Docker compose
+```shell
+docker compose up -d
+```
+
+## TODO
+- [x] PEP-517: Packaging and dependency management with `uv`
+- [x] Setup the infrastructure for an S3-compliant Object Storage ([Minio](https://github.com/minio/minio))
+- [ ] Setup the infrastructure for Hive Metastore
+- [ ] EDA writing Parquet to MinIO/S3 integrated with Hive
+- [ ] EDA writing Delta to MinIO/S3 integrated with Hive
+- [ ] EDA writing Iceberg to MinIO/S3 integrated with Hive
