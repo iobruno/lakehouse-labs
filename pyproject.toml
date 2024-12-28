@@ -1,0 +1,22 @@
+[project]
+name = "lakehouse-labs"
+version = "0.1.0"
+description = "Experimentation with Delta, Iceberg, Hive and Big Data tools"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+
+dependencies = [
+    "pyspark>=3.5.3,<4.0",
+    "delta-spark>=3.2.1,<4.0",
+    "pyiceberg>=0.8.1,<1.0",
+]
+
+[dependency-groups]
+dev = [
+    "jupyterlab>=4.3.4",
+    "ruff>=0.8.4",
+]
+
+[tool.ruff]
+line-length = 100
+lint.select = ["F", "E", "W", "I001"]
