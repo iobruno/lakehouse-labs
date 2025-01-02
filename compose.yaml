@@ -1,6 +1,6 @@
 x-presto-image: &presto-image trinodb/trino:${TRINO_VERSION:-468}
-x-hive-image:  &hive-image  apache/hive:${HIVE_VERSION:-4.0.1}
-x-postgres-image: &postgres-image postgres:${POSTGRES_VERSION:-17-alpine}
+x-hive-image:  &hive-image  apache/hive:${HIVE_VERSION:-3.1.3}
+x-postgres-image: &postgres-image postgres:${POSTGRES_VERSION:-13-alpine}
 x-minio-image: &minio-image minio/minio:${MINIO_VERSION:-RELEASE.2024-11-07T00-52-20Z}
 
 services:
@@ -30,6 +30,7 @@ services:
 
   metastore:
     image: *hive-image
+    platform: linux/amd64
     container_name: metastore
     environment:
       SERVICE_NAME: 'metastore'
@@ -48,12 +49,14 @@ services:
       metastore-init:
         condition: service_completed_successfully
     volumes:
+      - ./conf/hive-site.xml:/opt/hive/conf/hive-site.xml
       - vol-metastore-warehouse:/opt/hive/data/warehouse
       - vol-metastore-auxjars:/opt/hive/aux_jars/
 
   metastore-init:
     image: *hive-image
-    container_name: hive-init
+    platform: linux/amd64
+    container_name: metastore-init
     user: 0:0
     entrypoint: ["/bin/bash", "-c"]
     command:
@@ -94,6 +97,7 @@ services:
     command:
       - |
         mc alias set local http://minio:9000 minioadmin minioadmin
+        mc mb local/hive-warehouse
         mc mb local/lakehouse-raw
         mc mb local/lakehouse-staging
         mc mb local/lakehouse-service
