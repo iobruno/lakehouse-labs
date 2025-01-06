@@ -49,7 +49,10 @@ docker compose up -d
 - [x] PEP-517: Packaging and dependency management with `uv`
 - [x] Setup the infrastructure for an S3-compliant Object Storage ([Minio](https://github.com/minio/minio))
 - [x] Setup the infrastructure for Hive Metastore
-- [x] Write Delta Tables to MinIO/S3 + Hive Metastore integration
-- [x] Write Iceberg Tables to MinIO/S3 + Hive Metastore integration
+- [x] Write Delta Tables to MinIO/S3 with Hive Metastore
+- [x] Write Iceberg Tables to MinIO/S3 with Hive Metastore
+- [x] Write Hudi Tables to MinIO/S3 with Hive Metastore
 - [x] Detect row-level changes to Delta Tables
 - [ ] Detect row-level changes to Iceberg Tables
+- [ ] Detect row-level changes to Hudi Tables
+
