@@ -48,7 +48,6 @@ docker compose up -d
 ## TODO
 - [x] PEP-517: Packaging and dependency management with `uv`
 - [x] Setup the infrastructure for an S3-compliant Object Storage ([Minio](https://github.com/minio/minio))
-- [ ] Setup the infrastructure for Hive Metastore
-- [ ] EDA writing Parquet to MinIO/S3 integrated with Hive
-- [ ] EDA writing Delta to MinIO/S3 integrated with Hive
+- [x] Setup the infrastructure for Hive Metastore
+- [x] EDA writing Delta to MinIO/S3 integrated with Hive
 - [ ] EDA writing Iceberg to MinIO/S3 integrated with Hive
